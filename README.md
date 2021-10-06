@@ -1,2 +1,2 @@
-# szakdolgozat
-Szakolgozatom programjait ide töltöm fel.
+# PC szerver
+PC szerver Grafikus felülettel.
