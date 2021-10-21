@@ -1,0 +1,16 @@
+-Java socket: https://www.geeksforgeeks.org/socket-programming-in-java/
+-Java thread 1: https://www.geeksforgeeks.org/multithreading-in-java/
+-Java JFrame: https://www.geeksforgeeks.org/creating-frames-using-swings-java/
+
+-Java android socket: https://stackoverflow.com/questions/7384678/how-to-create-socket-connection-in-android/7384830
+-Java android thread: https://stackoverflow.com/questions/1921514/how-to-run-a-runnable-thread-in-android-at-defined-intervals
+
+Python socket: https://realpython.com/python-sockets/
+Python socket: https://www.geeksforgeeks.org/socket-programming-python/
+Python thread 1: https://www.tutorialspoint.com/python/python_multithreading.htm
+Python thread 2: https://www.geeksforgeeks.org/multithreading-python-set-1/
+Python thread 3: https://docs.python.org/3/library/threading.html
+Python OpenCV: https://www.geeksforgeeks.org/opencv-python-tutorial/
+Python QR kód 1: https://towardsdatascience.com/building-a-barcode-qr-code-reader-using-python-360e22dfb6e5
+Python QR kód 2: https://www.geeksforgeeks.org/reading-generating-qr-codes-python-using-qrtools/
+Python QR kód 3: https://thecleverprogrammer.com/2020/10/23/barcode-and-qr-code-reader-with-python/
