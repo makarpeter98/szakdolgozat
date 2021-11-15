@@ -14,3 +14,4 @@ Python OpenCV: https://www.geeksforgeeks.org/opencv-python-tutorial/
 Python QR kód 1: https://towardsdatascience.com/building-a-barcode-qr-code-reader-using-python-360e22dfb6e5
 Python QR kód 2: https://www.geeksforgeeks.org/reading-generating-qr-codes-python-using-qrtools/
 Python QR kód 3: https://thecleverprogrammer.com/2020/10/23/barcode-and-qr-code-reader-with-python/
+Python OpenCV képkédszítés: https://stackoverflow.com/questions/4179220/capture-single-picture-with-opencv
