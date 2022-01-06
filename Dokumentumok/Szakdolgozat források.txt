@@ -21,3 +21,6 @@ Raspberry 2: https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifi
 Egylapkás rendszer 1: https://hu.wikipedia.org/wiki/Egylapk%C3%A1s_rendszer
 
 GPIO 1: https://en.wikipedia.org/wiki/General-purpose_input/output
+
+PI4J 1: https://pi4j.com/1.2/install.html
+PI4J 2: https://pi4j.com/1.2/example/control.html
