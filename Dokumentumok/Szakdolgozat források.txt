@@ -19,3 +19,5 @@ Python OpenCV képkédszítés: https://stackoverflow.com/questions/4179220/capt
 Raspberry 1: https://hu.wikipedia.org/wiki/Raspberry_Pi
 Raspberry 2: https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/
 Egylapkás rendszer 1: https://hu.wikipedia.org/wiki/Egylapk%C3%A1s_rendszer
+
+GPIO 1: https://en.wikipedia.org/wiki/General-purpose_input/output
