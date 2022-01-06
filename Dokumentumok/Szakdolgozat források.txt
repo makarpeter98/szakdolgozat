@@ -15,3 +15,6 @@ Python QR kód 1: https://towardsdatascience.com/building-a-barcode-qr-code-read
 Python QR kód 2: https://www.geeksforgeeks.org/reading-generating-qr-codes-python-using-qrtools/
 Python QR kód 3: https://thecleverprogrammer.com/2020/10/23/barcode-and-qr-code-reader-with-python/
 Python OpenCV képkédszítés: https://stackoverflow.com/questions/4179220/capture-single-picture-with-opencv
+
+Raspberry 1: https://hu.wikipedia.org/wiki/Raspberry_Pi
+Egylapkás rendszer 1: https://hu.wikipedia.org/wiki/Egylapk%C3%A1s_rendszer
