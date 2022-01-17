@@ -24,3 +24,5 @@ GPIO 1: https://en.wikipedia.org/wiki/General-purpose_input/output
 
 PI4J 1: https://pi4j.com/1.2/install.html
 PI4J 2: https://pi4j.com/1.2/example/control.html
+
+L298 1: https://www.sparkfun.com/datasheets/Robotics/L298_H_Bridge.pdf?fbclid=IwAR0BqeOiONFC_-_pYsH-4tw7t9oesdnQVA7x4rLoXpB7_9T3rD5FRkBtuCQ
