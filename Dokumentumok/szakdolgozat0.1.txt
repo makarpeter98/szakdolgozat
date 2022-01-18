@@ -7,11 +7,13 @@
 	- Pythom kliens OK
 - eszköz céljának bemutatása OK
 - felmerül problémák és megoldásaik OK
-- raspberry kliens bemutatása:
-	- java prototípus bemutatása röviden
-	- java elvetésének oka
-	- java előnyei
-	- java hátrányai
+- raspberry kliens bemutatása: OK
+	- Egylapkás rendszerek OK
+	- GPIO OK
+	- java prototípus bemutatása röviden OK
+	- java elvetésének oka OK
+	- java előnyei OK 
+	- java hátrányai OK
 	- Python előnyei
 	- Python hátrányai
 	- Python kliens bemutatása
@@ -102,7 +104,7 @@ Python:
 
 OpenCV:
 	Az OpenCV egy C++ nyelven írt ingyenes gép látásért felelős függvénykönyvtár. A C++ alapok ellenére elérhető Python, Java és Matlab nyelven is. Ezen interfészek API-ja az online dokumentációkban érhető el. 
-	A projekten belül a Raspberry-n futó Python kliens használja a QR kódok tartalmának azonosítására. Ehhez, a cv2.QRDetector-t kellett alkalmazni. Könnyen integrálható python3-ban, képes kezelni az USB-n és a Raspberry alaplapján található kamera porton keresztül kapcsolt webkamerákat is. A tesztek alapján a Raspberry egy 600 x 800-as felbontású kamerát tud a legkönnyebben feldolgozni. Ez az aranyközépút, mert a nagyobb felbontással könnyebben megtalálja a szoftver az objektumokat, de a több adatot lassabban dolgozza fel, míg a kisebb felbontásnál gyorsabb a bejövő képek ellenőrzése de a kevesebb részlet miatt nehezebben azonosítja az objektumokat. 
+	A projekten belül a Raspberry-n futó Python kliens használja a QR kódok tartalmának azonosítására. Ehhez, a cv2.QRDetector-t kellett alkalmazni. Könnyen integrálható python3-ban, képes kezelni az USB-n és a Raspberry alaplapján található kamera porton keresztül kapcsolt webkamerákat is. A tesztek alapján a Raspberry egy 600 x 800-as felbontású kamera képét tudja a legkönnyebben feldolgozni. Ez az aranyközépút, mert a nagyobb felbontással könnyebben megtalálja a szoftver az objektumokat, de a több adatot lassabban dolgozza fel, míg a kisebb felbontásnál gyorsabb a bejövő képek ellenőrzése de a kevesebb részlet miatt nehezebben azonosítja az objektumokat. 
 	A bejövő képeket a kívánt formátumban le lehet menteni a háttértárra( vagy socketen keresztül továbbítani). Mivel a képek mentése .png formátumban történik, a szerver és a telefon kliens oldalon nem szükséges az OpenCV használata. (#Wikipédia használva#)
 	
 Socket programozás:	
@@ -130,7 +132,7 @@ Kezdetben a "listening" állapotban várakozik, ilyenkor a netstat által jelzet
 Eszköz céljának bemutatása:
 
 	A robotnak képesnek kell lennie egy közepes méretű boltban egy előre meghatározott pályán haladnia és szükség esetén fényképeket készítenie a beépített kamerával. Egy gyengébb felbontású kamera segítségével haladás közben dolgozza fel az információkat, amelyeket QR kódokon keresztül kap meg. A másik nagyobb felbontású kamerával fényképeket készít és menti vagy továbbítja a szerver és a másik kliens felé. 
-	A sebesség a PWM érték módosításával befolyásolható. Az alapértelmezett PWM kitöltés 30%. Az egyharmados kitöltöttség az áramforrás élettartamára is kedvezően hat. A PWM mértékét befolyásolja a talaj anyaga is, szőnyegen sokkal nagyobb teljesítmény szükséges mint parkettán. A fogaskerekek kopottsága miatt, az előre és a hátra haladáshoz szükséges kitöltési tényező nem egyenlő. ( Hátra könnyebben halad az autó. )
+	A sebesség a PWM érték módosításával befolyásolható. Az alapértelmezett PWM kitöltési tényező 30%. Az egyharmados kitöltöttség az áramforrás élettartamára is kedvezően hat. A PWM mértékét befolyásolja a talaj anyaga is, szőnyegen sokkal nagyobb teljesítmény szükséges mint parkettán. A fogaskerekek kopottsága miatt, az előre és a hátra haladáshoz szükséges kitöltési tényező nem egyenlő. ( Hátra könnyebben halad az autó. )
 	Az irányváltáshoz egy villanymotort használ, amit szintén PWM elven lehet vezérelni. Itt magasabb kitöltési tényezőt kell használni, mert a kerekek forgatása közben a súrlódás nagy. A kerekek forgatása is nagyban függ a talajtól. A gumiabroncs a legnagyobb súrlódást a lakkozott parkettán fejti ki, míg a legkisebbet a csempén. Ha a kerekek elérték a maximális kitérést az egyenestől, a szoftver nem enged további kerékszögváltozást az adott irányba. 	A teljesen kifordított kerék előbb egyenes állapotba áll vissza ha utasítást kap ( pl.: max bal + jobb = egyenes ) és még egy utasítás szükséges a másik szélsőérték. 
 	A kamera képe alapján képes a QR kód távolságának meghatározására, ezt a bejövő kép és a QR kód méretének arányából számítja, 2cm-es pontossággal. A minimális QR kód beolvasási távolság a kamerától függ. A maximális QR beolvasás nagyjából 230 cm ezt a kamera sajátosságai befolyásolják, de szoftveresen is  csökkenthető az érték. A fényviszonyok, és a beolvasandó objektum mérete és minősége is hatással van a beolvasás sikerességére, ezért erre a felhasználási területen figyelni kell. A felismerési ráta maximalizálására a legjobb körülmények a hideg fényű fényforrások és a stabilan elhelyezett QR kóddal ellátott táblák, valamint a stabil, folytonos rázós felületektől mentes talaj. Amennyiben a talaj nem megfelelő a vertikális irányú rázkódás sokszor használhatatlanná teszi az adott képkockát.
 	A tápegység a környezettől és a végrehajtandó utasításoktól függően tud 5V egyenfeszültséget biztosítani a Raspberry-nek. Ideális esetben, amit a sima talaj és a nagy, jól felismerhető táblák, nagy egyenesek kevés kanyar, jelentenek akár 2 órás üzemidő is elérhető (#sosem mértem csak saccolom!#). Használható akumulátor is, mert az alapot képező távirányítós autó elemmel is és aksival is működtethető. 
@@ -167,6 +169,158 @@ Felmerült problémák és megoldásaik:
 	A Python egy interpreteres nyelv, ellentében a fordított nyelvekkel mint például a C. A fordítóval rendelkező nyelveket futtatás előtt gép kóddá kell alakítani és csak ezt követően lehet átadni a processzornak. Az interpreteres nyelvek futási időben fordulnak át gépkóddá. Ez is hozzájárul a nagyobb rendszerigényhez. 
 	A megfelelő mozgási sebesség eléréséhez impulzusszélesség-modulációt (PWM) kell alkalmazni, mert a teljes sebességgel való haladás negatívan hat az elérhető üzemidőre és a kamera képét is nehezebb értelmezni. A motorok teljesítményszintjének állításával könnyebben megvalósítható a fokozatos kanyarodás is. Vigyázni kell, mert minimum 15%-os kitöltési tényező kell az előrehaladáshoz és minimum 30% a kerekek forgatásához. Ennél kisebb értékek esetén a motorok nem képesek ellátni a feladatukat. 
 
+Raspberry kliens bemutatása:
+	Az egylapkás rendszer, vagy Systam on Chip ( SoC / SOC ) egy olyan integrált áramkör, amely egy számítógép, vagy más elektronikai rendszer összes komponensét egyetlen lapkán tartalmazza.  
+	Egyes nagyobbteljesítményű változataik Linux vagy Windows rendszereket is futtathatnak, ha kompatibilisek a szükséges processzorcsaláddal, és a minimálisan előírt hardveres elvárásokat képesek teljesíteni. 
+	Az egylapkás rendszer célja, az integráció fokának növelése a gyártási költségek csökkentése és a kisebb rendszerek létrehozására való törekvés.
+	A Raspberry Pi egy bankkártya méretű BCM2835 alapú egylapás rendszer. Különböző Linux disztribúciók futtatására képes.
+	A hivatalosan ajánlott operációs rendszer a laphoz a Raspberry Pi OS ( korábban Raspbian ), ami a Debian Linux kifejezetten Raspberry Pi-re optimalizált változata.
+	
+	Minden Raspberry Pi modellben integrálva megtalálható:
+	-CPU
+	-RAM
+	-GPU
+	-USB port
+	-MIPI Kamera interfész
+	-HDMI port
+	-3,5 mm jack port
+	-memória kártya foglalat
+	-GPIO lábak
+	-5V tápcsatlakozás
+	
+	Az USB, HDMI GPIO portok mennyisége és minősége a különböző modellek között eltérő lehet. A CPU sebessége, a RAM mennyisége is változhat a modelltől függően. Az egységek fizikai mérete közel azonos, a Pi Zero-t leszámítva ( ez körülbelül feleakkora ).
+	
+Néhány Raspberry Pi eszköz jellemzője:
+	Pi Zero: alacsony teljesítményű és árú eszköz, 1Ghz-es 1 magos processzorral és 512MiB RAM-mal, HDMI, USB és micro USB porttal. Valamit egy 40 pines foglalattal, amely tartalmaz 26 darab GPIO, 2darab 3.3V-os, 2darab 5V-os és 8darab test lábat.
+	Pi 1 - 3: Normál teljesítményű, 700Mhz - 1.2Ghz processzorral, 512MB - 1024MB RAM-mal, HDMI, USB, micro USB porttal szerelt. Taralmaz egy 40 pines GPIO fogalaltot. Wifi és Bluetooth kapcsolatra is képes.
+	Pi 4: Az elődeinél nagyobb teljesítményű. 4 magos Cortex-A72 64bites 1.5Ghz-es processzorral, 2 - 8 GB LPDDR4-3200 SDRAM-mal szerelt rendszer. 2.4 GHz és 5.0GHz IEE 802.11ac wifi, Bluetooth 5.0, BLE Gigabit Ethernet biztosítja a kommunikációt a többi eszközzel. 2 db USB 3.0, 2 db USB 2.0, 2 db micro-HDMI, MIPI DSI kijelző, MIPI CSI kamera port található rajta. A robotot egy ilyen integrált lapja vezérli. 
+	
+	Meg lehet különböztetni A / A+ / B / B+ modelleket. Ezek többnyire a portok számában, vagy azok teljesítményében különböznek.
+	
+GPIO ( General-purpose input/output ): 
+	Általános célú bemeneti / kimeneti csatlakozó. Egy integrált, vagy elektromos áramkörön biztosít digitális csatlakozást a lábakon keresztül. Használható bejövő jelek fogadására és kimenő jelek vezérlésére is. Képes a felhasználó futási időben vezérelni.
+	A GPIO lábaknak ( pin ) nincs előre meghatározva a felhasználás célja. A felhasználási célt az áramkör felhasználója határozza meg. 
+	Több alkalmazási mód is lehetséges. Csak a GPIO láb elektromos időzítése, a szoftver sebessége befolyásolja a sebességét. Szabványos logikai jelszinteket használ, nem képes nagy teljesítmény átadására, tehát csak a vezérlő jeleket lehet vezérelni. 
+
+Néhány alkalmazási terület:
+    • LED állapotjelzők vezérlése
+    • más áramkörök működésének engedélyezése és letiltása
+    • fedélzeti kapcsolók leolvasása
+    • konfigurációs söntök leolvasása
+	A GPIO-k alapvetően digitálisak, de gyakran használják őket lineáris folyamatok vezérlésére. Ilyen eset például a projekten a mozgást és fordulást végző motorok vezérlése. Ezt PWM-en keresztül lehet megtenni. A kimenő jel munkaciklusa határozza meg a folyamatvezérlő jel effektív nagyságát. 
+	
+Raspberry klines Java prototipus:
+
+	A Raspberry-n futó kliens első változata, egy java nyelven írt program. A java kód könnyedén mozgatható a különböző operációs rendszerek között (Windows, Ubuntu, Raspberry OS, Android), így sok időt lehetett nyerni a fejlesztésével. Java swing elemekkel készült hozzá egy egyszer grafikus felület is, amely csak a felhasználást könnyíti meg de az összes funkció elérhető a konzolablakból is. 
+	Indulás után bekéri a szerver IP-címét, a saját és a cél kliens felhasználónevét. Megkísérel csatalkozni a szerverre, ha ez sikeres elküldi a saját felhasználónevét, hogy a későbbiekben azonosítani lehessen. Ehhez socket kapcsolatot használ. 
+	A kapcsolódáshoz szükséges adatokat alapértelmezetten a grafikus felületől kéri be, a nem megfelelő vagy hiányos kitöltés esetén figyelmezteti a felhasználót. 
+	Tesztelési céllal lehetőség van szöveges üzenetek küldésére és fogadására. A felhasználó a küldeni kívánt üzenetet egy erre a célra elhelyezett szövegdobozba írhatja be amit a küldés gombbal tud a szerverre eljuttatni. 
+	A kliens képes a fogadott üzenetek elemzésére. Ha a bejövő üzenet végrehajtható utasítást tartalmaz akkor végrehajtja azt. Ilyenkor az előre beállított GPIO lábakat vezérli. Mivel ez a kód csak a fejlesztés első szakaszában volt használva, ezért nincs benne PWM, de a végleges változatban már szerepel. 
+
+A GPIO lábak vezérléshez a következő csomagokat kell használni:
+	com.pi4j.io.gpio.GpioController;
+	com.pi4j.io.gpio.GpioFactory;
+	com.pi4j.io.gpio.GpioPinDigitalOutput;
+	com.pi4j.io.gpio.PinState;
+	com.pi4j.io.gpio.RaspiPin; 
+	
+	Ezek a csomagokat az internetről kell letölteni és feltelepíteni a linux rendszernek megfelelően. Java Runtime, WiringPi Native Library szükséges hozzá. 
+	A kódba való importálás után a dokumentációnak megfelelően használható. Be kell állítani a vezérelni kívánt lábakat, majd "Pedla.toggle()" (bekapcsol) vagy "Pelda.low()" (kikapcsol) utasítással lehet az állapotukat vezérelni. 
+
+	 Raspberry-re rögzített kamera képének feldolgozását, OpenCV segítségével terveztem megvalósítani, de ennek Java környezetbe való integrálása akadályokba ütközött. Gondok adódtak a telepítés során, majd a kamerát nem észlelte a csomag. Rövid kutatás után arra a döntésre jutottam, hogy az OpenCV Python nyelvvel való könnyű integrációja miatt elkészítem a kliens Python változatát.
+
+Raspberry kliens Python: 
+
+	A második változat Python nyelven íródott. A Raspberry OS alapértelmezetten biztosít a Python nyelvű fejlesztéshez minden szükséges eszközt (Thonny, Python fordító). Ennek a változatnak nagyobb erőforrásigénye van, így az újraírás során erre figyelni kellett.
+	A Python könnyű érthetősége és egyszerű felépítése miatt nagyon hamar elsajátítható. Így a kliens viszonylag gyorsan elkészült. Ez annak is köszönhető, hogy a Java változat szerkezeti elemeiből sokat megtartott, így a logikát már csak át kellett ültetni egy másik programozási nyelvre. Ennél a változatnál már cél volt a kód átláthatóbbá tétele is, így a logikailag összekapcsolódó elemek csoportosítva lettek a nekik megfelelő osztályokba és az azoknak megfelelő forrásfájlokba.
+	A változat már tartalmazza az OpenCV csomagokat. Képes a kamera képét feldolgozni, igény szerint egy ablakban megjeleníteni. Az egyes képkockákon megtalálja a QR-kódokat és szöveges formátummá alakítja a tartalmukat. 
+	Az OpenCV integrálása a Python nyelvbe az interneten található dokumentáció szerint történt:
+Telepíteni kell az OpenCV csomagot a "pip" parancs segítségével
+Ha szükséges az OpenCV korábbi változatait ennél a lépésnél lehet kiválasztani
+(A „pip” a Python nyelv csomagkezelő szoftvere a segítségével lehet új csomagokat beszerezni)
+A telepítés végeztével az OpenCV importálhatóvá válik a Python számára "import cv2"
+Importálás után egy objektumot beállítunk a kamera stream-re (0 a beépített kamera 1 az USB-s külső eszköz)
+Beolvassuk az adatokat a kamerától
+A legegyszerűbb módszer a tesztelésre ha megjelenítjük a képet
+
+(#ide be szeretném szúrni a tesztelős kódot#)
+
+	A Python kliens is több szálat használ, amelyek kommunikálnak egymással. Az egyes szálak funkciója megegyezik a Java változatban megtalálható változataikkal. Ennek a feladatelosztásnak az egyik nagy előnye, hogy így ha az egyik folyamat valamilyen nem várt esemény miatt leáll, akkor nem okozza az egész program leállását. Egy esetleges új folyamattal akár figyelni is lehetne a szálakat és ha hibát észlel akkor a problémás folyamatokat újraindítja. Amennyiben a probléma ismételten jelentkezik akkor tájékoztatni lehetne a felhasználót vagy a fejlesztőt róla. Ez megkönnyíti a hibajavítás folyamatát. 
+	A jelenlegi változat is tartalmaz egy kezdetleges hibakezelést, de csak az olyan eseményeket tudja kezelni amiket ismer. Egy váratlan kamera leállást például nem képes felismerni (például az eszköz haladás közben beleakad valamilyen tereptárgyba és kihúzódik a kábel).
+	Képes a szerverről való lecsatlakozást észlelni és erről a felhasználót tájékoztatni. Amennyiben a kamera a futtatás elejétől kezdve nem elérhető, vagy nincs megfelelően beállítva értesíti a felhasználót. 
+	
+	Szoftver felépítése:
+Main_class: Az összes további osztály és szál szülője. Feladata a szükséges konfigurációs lépések majd a funkciók végrehajtásáért felelős szálak elindítása. 
+Tájékoztatja a felhasználót az alap információkról, segít a helyes konfigurálásban. 
+Ellenőrzi az adatok helyességét, de akár úgy is beállítható, hogy mindent csináljon meg automatikusan. Mindezt parancssorból szöveges formában végzi. 
+Csatlakozik a szerverre (erről tájékoztatja is a felhasználót).
+Elindítja a küldőszálat
+Elindítja a fogadó szálat
+Elindítja a kamerakezelő szálat
+A szálaknak átadja a közös adatokat tároló objektumot, amely minden olyan adatot tárol amit egynél több szálnak kell használnia.
+Static_variables: Egy olyan objektum osztálya, amely minden szálak közötti kommunikációhoz szükséges adatot tartalmaz. A benne található adattagokat az összes futó folyamat meg tudja figyelni, képes módosítani. 
+Itt találhatóak a:
+mozgással kapcsolatos adatok
+a hálózati kommunikációhoz szükséges adatok (ip, port, felhasználónév, célkliens felhasználóneve)
+első kerekek kitérésnek értéke
+mozgás és fordulás pwm kitöltési tényezője
+GPIO vezérléshez szükséges lábak
+bejövő kimenő adatok
+Reciever_class: Feladata a szervertől érkező utasítások fogadása. Folyamatosan ellenőrzi , hogy érkezik-e valamilyen adat. Ha van bejövő üzenet akkor azt dekódolja UTF-8-as kódolásnak megfelelően, majd a mindenki által elérhető objektum megfelelő elemét beállítja a bejövő üzenetnek megfelelően.
+	Szabályos leálláskor értesíti a felhasználót egy "Szerveroldali fogadószál leáll!" üzenettel. 
+Sender_class: Feladata az adatok továbbítása a szerver felé a socketen keresztül. Indulás esetén értesíti a felhasználót a "Küldő és bemenet kezelő szál elindul!" üzenettel. Szabályos leállás esetén értesíti a felhasználót a leállásról a "Küldő és bemenet kezelő szál leáll!" üzenettel. Folyamatosan figyeli, hogy, van-e valamilyen küldendő üzenet a stat_var objektumban. Küldéskor a célkliens felhasználónevét beilleszti az üzenet elejére. 
+    Camera_handler_class: Feladata a kamerából érkező adatok feldolgozása. Indulásakor a "Kamera kezelő szál elindult!" üzenettel tájékoztatja a felhasználót.
+A felhasználó által beállított kamerából érkező adatokat beolvassa (OpenCV felhasználásával)
+A felhasználói beállítástól függően megjeleníti a "látottakat" egy új ablakban.
+QR kódot keres az adott képkockában. 
+Ha talál arról tájékoztatja a felhasználót.
+Beírja az üzenetet a stat_var qr_data_string mezőjébe és a data_found_bool mező értékét igazra állítja. Utóbbi lépésnek a kimenetkezelő szálnál lesz jelentősége. 
+Amennyiben nem talál adatot akkor a qr_data_string mező értékét üresre, a qr_data_found_bool értékét pedig hamisra állítja.
+Ha a felhasználó kéri a kamera képének megjelenítését, akkor a képen található QR kódot bekeretezi. 
+A QR kód méretét és a bejövő kép méretét összevetve képes kiszámolni a kód távolságát. Ehhez a lépéshez szükség lesz még egy szorzótényezőre is, amely a kamera látószögétől függ. Ezt a tényezőt a legkönnyebben úgy lehet kiszámolni, hogy 100cm-re helyezzük a QR kódot a kamerától. A szoftver kiszámolja a QR kód és a képkocka arányát majd ezt az értéket megszorozzuk annyival, hogy 100-at kapjunk. Ezzel a módszerrel nagyjából 2,5m-ig pontos számításokat kapunk. Utána már nem elég a webkamera felbontása a stabil QR kód értelmezéshez.
+Sikeres leálláskor a „Kamera kezelő szál leáll!” üzenettel tájékoztatja a felhasználót.
+Client_output_thread_class: Feladata a kliens eszköz kimeneteinek és az azokhoz szükséges beállításoknak a kezelése. Mivel a robot mozgásra képes ezért ez is egy kimenet forma. Meghívja a GPIO lábakat beállító függvényt. (Ez a függvény egy önellenőrzést is végrehajt a program indulásakor. ) Ha a bejövő üzenetek közül, vagy a kamera kezelő folyamat által talált QR kódban végrehajtandó üzenet van akkor az azoknak megfelelő függvényeket meghívja.  Ilyenkor a kerékforgatás vagy a mozgás idejére indít egy új szálat ami végrehajtja a kívánt utasítást. Majd azt a változót ami az adott utasítást tartalmazza "False"-ra állítja. Ha a felhasználó szeretne a kerekek irányán manuálisan állítani azt is megteheti ilyenkor a manual_wheel_setter művelet hívódik meg. Itt a felhasználó a kerekek irányát finomhangolhatja, hogy a null érték pontosan előre nézzen.
+GPIO_output_handler_thread_class: Feladata a GPIO lábak beállítása a megfelelő portokon valamint az induláskor történő önellenőrző folyamat vezérlése. Ilyenkor a robot előre - hátra mozog, majd a kerekeket jobbra és balra forgatja majd vissza egyenesbe. Ezekről a lépésekről tájékoztatja is a felhasználót. A felhasználónak lehetősége van a fentebb említett manuális kerékbeállításhoz. Ilyenkor a 'j' és a 'b' billentyűk segítségével 0,01s időre tudja forgatni a kerekeket jobbra és balra. Ha a kerekek iránya megfelelő akkor a 'q' billentyű megnyomásával tud kilépni a menüből.
+Move_thread_class: Feladata a GPIO lábak vezérlése az előre vagy hátra haladás érdekében. Figyeli a stat_var objektum forward_bool és backward_bool változókat. Megvalósítja a motor PWM elvű vezérlését. Az előre beállított kitöltési értéket tartja, a GPIO láb időzített be és kikapcsolásával. Miután végzett a vezérléssel leáll, ezzel is kímélve az erőforrásokat. Leállás előtt az általa vezérelt lábakat alaphelyzetbe, azaz kikapcsolt állapotba teszi. Ez egy egyszerű védelmi intézkedés amivel el lehet kerülni a telep gyors merülését és a motor leégését. 
+Turn_thread_class: Feladata a GPIO lábak vezérlése a jobbra vagy balra fordulás érdekében. Figyeli a stat_var objektum right_bool és left_bool változókat. Megvalósítja a motor PWM elvű vezérlését. Az előre beállított kitöltési értéket tartja, a GPIO láb időzített be és kikapcsolásával. A fordulást több szakaszban oldja meg, de a vezérlés megoldható akár a QR kódba írt olyan utasítással is ami a fordulás mértékét befolyásolja, de nem ez az alapértelmezett. Az alapértékből a fordulás a szélső értékig történik. Onnan 2 ellenkező irányú fordítási utasítás kell, hogy a másik szélső értékre elérjen. Például ha jobbszélső állásban van: balra, balra utasítást kell kapnia mert először az alapállapotba kerül majd onnan fordul a baloldali szélsőértékhez. Miután végzett a vezérlés leáll, ezzel is kímélve az erőforrásokat. Leállás előtt az általa vezérelt lábakat alaphelyzetbe, azaz kikapcsolt állapotba teszi. Ez egy egyszerű védelmi intézkedés amivel el lehet kerülni a telep gyors merülését és a motor leégését. 
+
+Autó részegységei: A robot 3 fő komponensből áll. A vezérlést végző Raspberry-ből, a távirányítós autóból és a benne található motorokból, valamint a kettőt összekötő vezérlőelektronikából. 
+
+L298 motorvezérlő: Egy integrált monolitikus vezérlő. Magas feszültségű, magas áramú vezérlő ami a standard TTL logikai szintekhez készült. Feladata léptetőmotorok, mágnesszelepek, relék vezérlése. Két bemeneti foglalta van amelyeken keresztül lehet engedélyezni, vagy tiltani a rájuk kötött eszközöket. A bemeneteket a különböző jelszintekkel lehet vezérelni, amit a GPIO lábakon keresztül végez a Raspberry. 
+(# L298 block diagram #)
+Az L298 integráltan tartalmaz két teljesítménykimenetet. A teljesítmény kimenet vezérelhető PWM elven vagy folyamatosan, ez csak a bemenetek állapotától függ. Minden híd kapcsolatot a négy bemenet állapota határoz meg, melyek az In1 ; In2 ; EnA és In3 ; In4 ; EnB. Az In bemenet vezérli a híd állapotát akkor, ha az En kapcsoló is engedélyezve van ( magas feszültség érték van rajta ). Alacsony feszültségi érték, azaz tiltás esetén
+gátolja az input kimenetet. Minden input TTL kompatibilis. Az érzékelő ellenállás, nem huzaltekercses típusú, kötelezően
+földelni kell a Vs negatív pólusa közelében. Ez a GND közelében van az IC-n. Minden bemenetnek a lehető legrövidebb úton kell csatalkoznia a vezérlőjel forrásához. Be és kikapcsolás előtt az En lábnak alacsony, tiltó állapotban kell lennie. A kimeneti feszültség használható arra, hogy szabályozza a kimeneti áram értékét az amplitúdó levágásával vagy túláram elleni védelmet lehet biztosítani, a kimenetek alacsonyra állításával. A fék funkcióhoz ( gyors motorleállítás ) a maximális névleges teljesítmény nem lehet több mint 2 amper. Ha az ismétlődő áram maximuma több mint 2 amper, akkor párhuzamos konfiguráció is használható ( #7. ábra# ). Külső diódákból álló hídra van szükség, ha induktív terheléseket hajtanak végre és az IC bemeneteire érkező jelek szaggatottak. ( Shottky diódákat célszerű használni. ) Ez a megoldás 3 Amperig képes működni egyenáramú üzemmódban és 3,5 A-ig ismétlődő csúcsáram üzemmódban.
+Guinness Mini DV Y2000 Webcam: Egy apró méretű webkamera. Feladata a robot előtt található QR kódok beolvasása. A felbontása alacsony 600 x 480 másodpercenként 30 képkockát továbbít, AVI videó formátumot használ a videóhoz. A videó Ezek a paraméterek ideálisak, mert az alacsony képminőség miatt könnyebb feldolgozni a képkockákat. A készített képeket a szoftver JPG formátumban menti el a háttértárra a megfelelő utasítás beolvasása után. Egy Mini USB - USB kábelen keresztül történik a kommunikáció. Egyes modellekben egy apró akkumulátor is található. A jelenlegi projektnél a tápellátást az USB port biztosítja. Képes egy max 32Gb-os SD kártyára rögzíteni, de ez a funkció nincs kihasználva. Méretei meglehetősen kicsik 26mm x 27mm x 26mm. Ez megkönnyíti a beszerelést. 
+(#kép a kicsi kameráról#)
+AVI ( Audio Video Interleave ): Jelentése Audio Video Összefésülés. Egy fájlformátum, melyet a Microsoft 1992-ben mutatott be. Feladata a hang és a videó adatok egy csomagban való tárolása. Jelen esetben csak a kép továbbítódik. Egy speciális esete a RIFF formátumnak ( Resource Interchange File Format - erőforrás-cserélő fájlformátum) mely a fájl adatait tömbökbe "chunk"-okba darabolja. A RIFF formátumon belül az AVI egyetlen tömböt alkot. Ez két kötelező és egy nem kötelező altömbre van bontva. 
+	Az első altömb a "hdrl" címkével van ellátva. Ez a fájl fejléce és a metadatokat tartalmazza ( adat az adatról). Információt találunk itt többek között a kép szélességéről és magasságáról, a képkockák számáról. 
+	A második altömb a "movi" címkével van jelölve. Ez a kép és hangadatokat tartalmazza, ezek alkotják az AVI videót. 
+	A nem kötelező altömb az "idxl" címke jelöli, feladat a helymeghatározás a fájlon belül. 
+A RIFF formátumon keresztül a "movi" adatai dekódolhatóak és kódolhatóak egy modul segítségével. Ez a modul a kodek. Feladata a nyers adat a "movi" tömbön belül használt adatra fordítása. Ezért az AVI a médiatartalmat gyakorlatilag bármilyen tömörítőeljárásnak megfelelően tartalmazhatja, feltéve, hogy a tömörítési eljárás megfelel valamely sémának, de tömörítetlenül is tartalmazhatja ( például: Full Frames, Intel Real Time Video, QPEG, MPEG-4 ). A jelenlegi egyik legnépszerűbb megoldás az, ha a videót DivX-be a hangot Mp3-ba tömörítjük. 
+(#wikipédia használva AVI résznél forrás jelölve#)
+JPEG (Joint Photographic Experts Group): Képek tárolására alkalmas fájlformátum. A JPEG formátumot 1992-ben fogadták el, mint különböző képtömörítési eljárásokat leíró normát. A kép tartalmát veszteségesen tömöríti. A szabvány tartalmaz egy veszteségmentes tömörítést is de ezt nem használják. A tömörítés ugyan információveszteséggel jár, de egy 10-100x-osan tömörített kép a visszaállítása után is élvezhető marad. Fényképek és rajzok tárolására alkalmas első sorban. A Grafikonok és egyéb hirtelen színátmenetes ábrákhoz a PNG a megfelelő formátum. 
+	A módszer különböző színmélységeket képes kezelni, használható szekvenciális és progresszív módon is:
+szekvenciális: soronként történik a tömörítés.
+progresszív: először durva formákat, majd a finomabb részleteket dolgozza fel. 
+JPEG-ben nem a képpontok tárolódnak le, hanem a képet transzformálják a frekvencia-tartományban DCT-vel (diszkrét koszinusz transzformáció).
+Továbbfejlesztett változata a JPEG2000, mely a DCT helyett Wavelet transzformációt használ. Ez a 8x8 pixeles elemi blokkok határán jelent nagy különbséget.
+	A szabvány ugyan a tömörítést leírja de nem határozza meg a tárolási módokat. A képeket többnyire a JFIF ((JPEG File Interchange Format) ) formátumban tárolják. A kép feldolgozása többlépcsős:
+    1. Színtérszámítás RGB színtérből YCbCr színtérbe CCIR601 szerint
+    2. Cb és Cr színkomponensek szűrése és letapogatása.
+    3. 8x8-as blokkokra történő felosztás majd a blokkok diszkrét koszinusz transzformációja 
+    4. Kvantálás
+    5. Átrendezés
+    6. Entrópiakódolás
+
+Az 1,2,3,4-es lépéseknél képződik a veszteség. Ezt az emberi szem egészen a 1,5 - 2 bit/pixel adatmennyiségig nem látja, 0,3bit/pixel alatt a kép használhatatlan., mivel a tömörítés során olyan mintázatok kerülnek a képre amelyek korábban nem voltak ott, blokkok képződnek színek jelennek meg és tűnnek el, szürkül a kép a JPEG2000 ezeket a hibákat orvosolta. 
+Ha a forrásfájl 24-bit-RGB fájl, akkor 12-15-szörös tömörítésnél még szabad szemmel nem látható a veszteség, 35-ig még jó minőségűnek nevezhető a kép. Ezek a számok függenek a kép tartalmától is. Ha sok az apró részlet a képen ezek elveszhetnek a tömörítési eljárás során. 
+
+Impulzusszélesség-moduláció (PWM): (pulse-width modulation). Egy, az elektromos eszközök vezérléséhez használt széles körben elterjedt technológia. A korszerű teljesítményelektronika tett a gyakorlatban is használhatóvá.
+	A fogyasztóba táplált áramot, és az átlagos feszültséget úgy állítják be, hogy azt gyors ütemben be és kikapcsolják. Minél nagyobb a bekapcsolt állapot aránya a kikapcsolthoz képest a fogyasztó annál nagyobb teljesítményt tud felvenni.
+	A be és kikapcsolások frekvenciájának sokkal nagyobbnak kell lennie mint az a frekvencia ami még hatással lehet a fogyasztóra. Egy lámpa fényerőszabályozásánál ez a frekvencia jellemzően 120Hz egy motorvezérlő esetében néhány kilo Herz-től pár száz kilo Herz-ig terjedhet. 
+(#pwm példakép#)
+
+A vonalfeszültséget (kék) a moduláció impulzusok sorozatává alakítja. Ez, szinuszos hullámformát indukál a fogyasztó áramkörében.
 
 
-		
