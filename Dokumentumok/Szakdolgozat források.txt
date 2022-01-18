@@ -29,3 +29,4 @@ L298 1: https://www.sparkfun.com/datasheets/Robotics/L298_H_Bridge.pdf?fbclid=Iw
 
 Guinness Mini DV Y200: https://shop.metalscraprecords.com/guinness-mini-dv-y2000-photo-video-camcorder-cam-677
 AVI: https://hu.wikipedia.org/wiki/Audio_Video_Interleave
+JPEG: https://hu.wikipedia.org/wiki/JPEG
