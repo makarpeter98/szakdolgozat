@@ -1,0 +1,85 @@
+
+- összefoglaló OK
+- funkciók leírása OK
+- felhasznált nyelvek / OpenCV
+- socket programozás bemutatása OK
+	- Java szerver OK
+	- Java kliens OK
+	- Pythom kliens OK
+- eszköz céljának bemutatása OK
+- felmerül problémák és megoldásaik OK
+- raspberry kliens bemutatása: OK
+	- Egylapkás rendszerek OK
+	- GPIO OK
+	- java prototípus bemutatása röviden: OK
+		- java elvetésének oka OK
+		- java előnyei OK 
+		- java hátrányai OK
+	- Python kliens: OK
+		- Python előnyei OK
+		- Python hátrányai OK
+		- OpenCV Python bemutatása OK
+		- Python program részegységei: OK
+			- Main_class OK
+			- Static_variables OK
+			- Reciever_class OK
+			- Sender_class OK
+			- Camera_handler_class OK
+			- Client_output_class OK
+			- GPIO_output_handler_thread_class OK
+			- Move_thread_class OK
+			- Turn_thread_class OK
+- autó részegységei:
+	- motor OK
+	- PWM OK
+	- vezérlő OK
+	- kamerák OK
+		-guinness OK
+			- videó formátuma OK
+			- képformátum OK
+		-kék kamera ??
+- PC (Java) szerver és részegységei: OK 
+	- java szerver kliens használatának oka OK
+	- java előnyei szerverként OK
+	- java hátrányai szerverként OK
+	- java szerver problémák és megoldásaik OK
+	- wathchdog timer OK 
+	- java szerver program részegységei: 
+		- ServerClass
+		- Sender (class)
+		- Reader (class)
+		- GUI
+	- szerver alternatív felhasználásának lehetőségei
+		
+- Android kliens (Java):
+	- miért Java Kotlin helyett
+	- java előnyei
+	- java hátrányai
+	- felmerül problémák és megoldásaik
+	- java kliens program részegységei:
+		- MainFrame
+		- Reader (class)
+		- Writer (class)
+		
+- PC kliens (java):
+	- prototipus elkészült funkciói
+	- hatása a végleges projektre
+	
+- beüzemelési útmutató
+- hibák, amiket a felhasználó könnyen meg tud oldani
+- esetleges további fejleszthető lehetőségek
+
+- QR kód leírása
+
+- Felhasználhatósági területek:
+	- wifimentes területen használható őrrobot
+	- nagykiterjedésű terület
+	- olyan terület, ahol nem megoldható a több kamera
+	- boltban ellátható funkciók:
+		- polcok állapotának ellenőrzése
+		- esetleges betörés esetén fénykép készítése a betörőről
+		- OpenCV segítségével objektumok azonosítása (majd én megírom) 
+	- biztonsági szolgálat mellé kisegítő eszköz
+	
+-wifi direct
+-bluetotth elvetése
