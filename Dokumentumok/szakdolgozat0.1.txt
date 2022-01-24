@@ -10,32 +10,40 @@
 - raspberry kliens bemutatása: OK
 	- Egylapkás rendszerek OK
 	- GPIO OK
-	- java prototípus bemutatása röviden OK
-	- java elvetésének oka OK
-	- java előnyei OK 
-	- java hátrányai OK
-	- Python előnyei
-	- Python hátrányai
-	- Python kliens bemutatása
-	- OpenCV Python bemutatása
-	- Python program részegységei:
-		- Main_class
-		- Static_variables
-		- Reciever_class
-		- Sender_class
-		- Camera_handler_class
-		- Client_output_class
+	- java prototípus bemutatása röviden: OK
+		- java elvetésének oka OK
+		- java előnyei OK 
+		- java hátrányai OK
+	- Python kliens: OK
+		- Python előnyei OK
+		- Python hátrányai OK
+		- OpenCV Python bemutatása OK
+		- Python program részegységei: OK
+			- Main_class OK
+			- Static_variables OK
+			- Reciever_class OK
+			- Sender_class OK
+			- Camera_handler_class OK
+			- Client_output_class OK
+			- GPIO_output_handler_thread_class OK
+			- Move_thread_class OK
+			- Turn_thread_class OK
 - autó részegységei:
-	- motor
-	- PWM
-	- vezérlő
-	- kamerák
-- PC (Java) szerver részegységei:
-	- java szerver kliens használatának oka
-	- java előnyei szerverként
-	- java hátrányai szerverként
-	- java szerver problémák és megoldásaik
-	- java szerver program részegységei:
+	- motor OK
+	- PWM OK
+	- vezérlő OK
+	- kamerák OK
+		-guinness OK
+			- videó formátuma OK
+			- képformátum OK
+		-kék kamera ??
+- PC (Java) szerver és részegységei: OK 
+	- java szerver kliens használatának oka OK
+	- java előnyei szerverként OK
+	- java hátrányai szerverként OK
+	- java szerver problémák és megoldásaik OK
+	- wathchdog timer OK 
+	- java szerver program részegységei: 
 		- ServerClass
 		- Sender (class)
 		- Reader (class)
@@ -56,9 +64,24 @@
 	- prototipus elkészült funkciói
 	- hatása a végleges projektre
 	
+- beüzemelési útmutató
+- hibák, amiket a felhasználó könnyen meg tud oldani
 - esetleges további fejleszthető lehetőségek
 
 - QR kód leírása
+
+- Felhasználhatósági területek:
+	- wifimentes területen használható őrrobot
+	- nagykiterjedésű terület
+	- olyan terület, ahol nem megoldható a több kamera
+	- boltban ellátható funkciók:
+		- polcok állapotának ellenőrzése
+		- esetleges betörés esetén fénykép készítése a betörőről
+		- OpenCV segítségével objektumok azonosítása (majd én megírom) 
+	- biztonsági szolgálat mellé kisegítő eszköz
+	
+-wifi direct
+-bluetotth elvetése
 
 Összefoglaló:
 
@@ -331,6 +354,10 @@ ff-180sh DC motor: Az alapként használt távirányítós autó gyári motorja.
 
 PC Java Szerver: Feladata a Raspberry-n és az Androidon futó kliensek összekötése. Ezt socket kapcsolattal teszi lehetővé. A fejlesztés Windows alatt történt de a Linuxon történő futtatás is lehetséges. A Java szerver és egy kezdeti fázisban maradt PC kliens egyszerre készültek. A Java nyelv azért volt előnyös választás mert így a fejlesztés menete nagyon hasonló lehetett az Androidos eszközön, a Raspberry-n és a Windows vagy Linux operációs rendszert futtató PC-n. 
 	A csatlakozott kliensektől érkező üzeneteket továbbítja az üzenetben elhelyezett címzettnek (ha van ilyen). Az üzeneteket nem tárolja, így ha az egyik kliens offline csak az utolsó üzenetet kapja meg a csatlakozásakor. A projekt jellegéből adódóan nem is szükséges az üzeneteket tárolni, de a megvalósítás lehetővé teszi, hogy némi módosítás után rendelkezzen az üzenet tárolásának lehetőségével. Így, akár egy chatprogram szervere is lehet. Egy ilyen működést a kliensek is támogatnak a szükséges módosítások elvégzése után. 
+	Mivel a szerver feladata csak az adatok továbbítása a címzettek felé ezért más célokra is felhasználható. Kisebb módosításokkal chat program szervere is lehet. Ilyen felhasználás esetén az áthaladó üzeneteket nem kell megjeleníteni. Egy frissen csatlakozott felhasználó megkapja az éppen aktív felhasználók listáját annak érdekében, hogy ki tudja választani kinek akar üzenni. Egy adatbázis csatlakoztatásával az ismert felhasználók tárolhatóak. Az üzenetküldés lehet előzetes regisztrációhoz kötött, így csak az ismert felhasználók tudnak üzeneteket küldeni egymásnak. Az adatbázisban tárolhatóak az üzenetek így ha egy felhasználó offline akkor a csatlakozása után megkapja a korábban küldött üzeneteit.
+	Egy esetleges továbbfejlesztett változatban a szerveren áthaladó képeket ki lehetne elemezni. Mivel a Raspberry teljesítménye nem elegendő azadatok helyben történő feldolgozásához ezért az, csak továbbítaná a kamera képét a szervernek. A szerver pedig tetszőleges képfeldolgozási eljárásokat hajthatna végre a kapott adatokon például objektumok felismerése. Az objektumfelismerés alkalmas lehet egy bolt árúkészletének nyílvántartására. Az OpenCV támogatja az arcfelismerést ha kellő számú minta áll rendelkezésre. Egy ilyen felhasználás során az eszköz lefényképezi az előtte álló személyt a szerver pedig azonosítja az adatbázis alapján. Ha nincs egyezés akkor értesíti az illetékeseket.
+	Mivel a szerver megkapja a robot által beolvasott információkat ezért nyomon is tudja követni az aktuális állapotát. Egy sematikus ábrán lehet ábrázolni az eszköz aktuális pozícióját, hasonlóan a buszokon található monitorhoz.
+	
 	A Java nyelvben választása öt fő okra vezethető vissza:
 - A párhuzamos szálakkal történő programozást egyszerűen lehet benne megvalósítani
 - A platformfüggetlensége miatt az összes szükséges operációs rendszert támogatja
@@ -361,4 +388,61 @@ Java szerver felépítése: A szerver 2 fő részegységből áll. Az egyik a m�
 	Kliens csatlakozása után a hozzá rendelt fogadó és küldő szálat is elindítja. Jelzi a felhasználónak a csatlakozást, és ha megvan a kliens felhasználóneve akkor kiírja a megfelelő, csatlakozott felhasználókat listázó szövegdobozba. 
 	(# kép a grafikus felületről#)
 	
+Grafikus felület: A grafikus felület a Swing felületkezelővel készült. A Swing egy grafikus felület leíró eszköz, ami a Java nyelvvel kompatibilis. A JFC (Java Foundation Classes) részét képezi. Fejlesztése során a cél, egy AWT-nél (Abstract Windows Toolkit) részletesebb, kifinomultabb grafikus felületet lehessen vele létrehozni. Segítségével bármilyen grafikus felület elkészíthető.
+Utódja a JavaFX rendszer, amely 2009-ben váltotta le.
+Alapértelmezetten tartalmaz:
+gombokat
+jelölőnégyzetet
+radio gombokat
+csúszkákat
+szövegdobozokat
+szövegmezőket
+görgetőpaneleket
+füles paneleket
+táblázatokat
+listákat
 
+	Az AWT-vel ellentétben platformfüggetlen, mert a teljes felület leírható Java kóddal. Erősen moduláris architektúra, lehetővé teszi a modulok teljes egyénre szabását, majd ezekből egy egyedi megvalósítás létrehozását. A felhasználó a Java öröklési megoldásainak segítségével a modulok alapértelmezett opcióit szabadon felülírhatják ezzel elérve az egyedi megjelenést. 
+	A JComponent osztály az őse az összes felület leíró elemnek. Az elemekhez kapcsolódó események aszinkron módon hívódnak meg, tulajdonságaik kötöttek dokumentált metódusként működnek. A felület akár futásidőben is gyorsan megváltoztatható. 
+	
+	A széleskörű felhasználhatóság oka, hogy a Swing képes felülírni a gazdagpen futó operációs rendszer által használt grafikus felület vezérlőit a saját megjelenítése érdekében. A vezérlőfelületek megjelenítéséhez a Java 2D api-t használja fel, a natív felhasználói felület eszközei helyett. A Swing elemeinek nincs megfelelő alternatívája az operációs rendszer grafikus felületi elemei között így szabadon rendelhető bármilyen módon a gazda rendszer elemeihez. 
+	
+	A könyvtár nagyrészt függ az MCV modell ( Modell View Controll - Modell Nézet Vezérlő) mintáitól. Ennek lényege, hogy a megtekintett adatok, a beviteli elemek és az ezek utasításait kezelő modelltől el vannak különítve. Az elemekhez társulnak modellek amelyekhez a felhasználó írhatja meg a megvalósítást. A tipikus használat csak a fák és listák esetén igényelhet egyedi modellek létrehozását. A keretrendszer biztosítja az alapértelmezett implementációkat, melyek társítva vannak a Swing könyvtárban található gyermekosztályokkal. A listák, fák, táblák igényelhetnek egyedi modelleket ha az adatstruktúrák alkalmazás-specifikusak.
+	A Swing a relatív elemelrendezést preferálja. Ez, a felületet alkotó vizuális elemek közötti helyzeti viszonyokat írja le. A másik elrendezési mód az abszolút elemelrendezési módszer. Itt az elemek helye és mérete pontosan rögzítve van. Utóbbi eljárás kevésbé kezeli rugalmasan az ablak méretének változásait. Nem megfelelő beállítások esetén a grafikus felület széteshet. 
+	
+	(# kép a grafikus felületről#)
+	
+beérkező és kimenő üzenetek megjelenítése
+csatlakozott felhasználók felhasználónevei
+aktuálisan futó szálak 
+
+
+
+PC teszt kliens: A fejlesztés egy korai állapotában készült egy kliens PC-re amely az Androidos telefonon futó klienst váltotta ki annak elkészüléséig. Ez a Java nyelven írt program volt az alapja a később Python nyelven elkészített Raspberry-n futó kliensnek. 
+	A program segítségével könnyen és gyorsan lehet szimulálni a telefonos változat által kiadható utasításokat. Próbaüzemben lehetett vele vezérelni a robotot, valamint üzenetet küldeni neki és fogadni. Az Androidos kliens alapjai is ebből a kódból származnak, köszönhetően a Java platformfüggetlenségének. 
+	Ez a változat tartalmaz:
+    1. egy fogadó szálat
+    2. egy küldő szálat
+    3. egy grafikus felületet az egyszerű kezelhetőség érdekében
+
+	A program nagyon kevés szálon fut, így nem kellett az optimalizálással sok időt eltölteni. Egy fogadó és egy küldő szál fut használat közben. A program indítása után, meg kell adni a felhasználónevet, a cél felhasználót, és a szerver IP címét. A program Socketen kapcsolaton keresztül csatlakozik a szerverre. Sikeres csatlakozás esetén elküldi a felhasználónevét a szervernek, amellyel a továbbiakban azonosítani lehet majd. 
+	Egy szövegdobozban tájékoztatja a felhasználót a futással kapcsolatos információkról:
+Sikeres csatlakozás a szerverre
+Sikertelen csatlakozás a szerverre
+Ha elveszti a kapcsolatot a szerverrel
+Hiányzó felhasználónév
+Hiányzó cél kliens felhasználónév
+Hiányzó IP cím. 
+
+	A program többnyire a szerverrel egy eszközön fut, így a hálózati kapcsolódásból eredő problémák felderítésére nem alkalmas. A hálózati kapcsolat sebessége nagyban befolyásolja a szerver-kliens közötti kapcsolatot. Így ezzel csak a program megfelelő futása ellenőrizhető. Ha a telefon vagy a Raspberry WIFI kapcsolatával valamilyen hiba van akkor az üzenetek késhetnek vagy el is veszhetnek. Ha a kliens és a szerver egy helyen fut ez nem fordulhat elő, legfeljebb a hibás portbeállításból következhet sikertelen kapcsolódás.
+	Egy nem megfelelő router választása esetén akár másodpercekben is mérhető az az idő ami az üzenet elküldése és a  parancs végrehajtása között eltelik. Ez nem feltétlenül jelent problémát, mert a robot képes az önálló működésre, de a távirányítású üzemelést akár el is lehetetleníti.
+	A fogadó szál a szervertől fogadja az üzeneteket. Fogadás után megjeleníti azok tartalmát az erre a célra kijelölt szövegmezőben. Képes felismerni, ha az üzenet irányváltoztatáshoz kapcsolódó parancsot tartalmaz. Ezt jelzi is az információs szövegmezőben, az ettől eltérő üzeneteket megjeleníti az egyszerű üzeneteknek szánt mezőben. Az üzenet megjelenítését a felhasználónév megjelölésével kezdi, majd az üzenet tartalmát írja ki. 
+	A küldő szál a felhasználó által beírt, majd a "küldés" gomb megnyomásával elküldött üzenet továbbításával foglalkozik. A szöveg elejére illeszti a célfelhasználó nevét egy "@" karakterrel elválasztva. Így a "@" karakter használata nem megengedett az üzenet szövegében. Az elválasztó karakter megváltoztatható, de akkor a többi klienst is fel kell a változásra készíteni.
+	A kliens átalakítható egy chat klienssé pár egyszerű lépésben. Le kell cserélni a felhasználónevet az üzenettől elválasztó karaktert egy olyan karaktersorozatra amely nem valószínű, hogy megjelenik az üzenetküldés során, vagy két lépésben kell elküldeni. Először a célfelhasználó nevét majd az üzenetet. Ilyenkor a szervert is fel kell készíteni a megváltozott adattovábbítási módra. A szerver előre meghatározott időközönként elküldi az aktív felhasználók listáját amit a kliens megjelenít. 
+	A Grafikus felületen találhatóak gombok, melyekkel a robot haladási irányára lehet hatni. Ezeknek a megnyomásával ugyanazt a parancsot lehet elküldeni a szerveren keresztül a Raspberry-n futó kliensnek mint amit az, a QR kódokból kiolvas. Így távirányíthatóvá válik az eszköz. Létezik a kliens PC-s párja is ami a Raspberry-n futó változatot szimulálja. Itt a gombok helyett sima szövegdobozok jelzik a haladással kapcsolatos információkat, minden másban megegyezik ezzel a változattal.
+	A felület az alap Swing elemekből épül fel:
+Görgethető szövegmezők
+Gombok
+Szövegdobozok
+
+	

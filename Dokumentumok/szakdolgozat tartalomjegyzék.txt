@@ -44,12 +44,12 @@
 	- java hátrányai szerverként OK
 	- java szerver problémák és megoldásaik OK
 	- wathchdog timer OK 
-	- java szerver program részegységei: 
-		- ServerClass
-		- Sender (class)
-		- Reader (class)
-		- GUI
-	- szerver alternatív felhasználásának lehetőségei
+	- java szerver program részegységei: OK
+		- ServerClass Ok
+		- Sender (class) OK
+		- Reader (class) OK
+		- GUI OK
+	- szerver alternatív felhasználásának lehetőségei OK
 		
 - Android kliens (Java):
 	- miért Java Kotlin helyett
@@ -61,9 +61,9 @@
 		- Reader (class)
 		- Writer (class)
 		
-- PC kliens (java):
-	- prototipus elkészült funkciói
-	- hatása a végleges projektre
+- PC kliens (java): OK
+	- prototipus elkészült funkciói OK
+	- hatása a végleges projektre OK
 	
 - beüzemelési útmutató
 - hibák, amiket a felhasználó könnyen meg tud oldani
