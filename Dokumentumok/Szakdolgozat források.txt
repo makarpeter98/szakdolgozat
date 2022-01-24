@@ -33,3 +33,5 @@ JPEG: https://hu.wikipedia.org/wiki/JPEG
 PWM: https://hu.wikipedia.org/wiki/Impulzussz%C3%A9less%C3%A9g-modul%C3%A1ci%C3%B3
 
 villanymotor: https://hu.wikipedia.org/wiki/Egyen%C3%A1ram%C3%BA_g%C3%A9p
+
+java swing: https://en.wikipedia.org/wiki/Swing_(Java)
