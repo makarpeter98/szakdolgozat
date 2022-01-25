@@ -1,4 +1,3 @@
-
 - összefoglaló OK
 - funkciók leírása OK
 - felhasznált nyelvek / OpenCV
@@ -49,28 +48,23 @@
 		- Sender (class) OK
 		- Reader (class) OK
 		- GUI OK
-	- szerver alternatív felhasználásának lehetőségei OK
-		
-- Android kliens (Java):
-	- miért Java Kotlin helyett
-	- java előnyei
-	- java hátrányai
-	- felmerül problémák és megoldásaik
-	- java kliens program részegységei:
-		- MainFrame
-		- Reader (class)
-		- Writer (class)
-		
+	- szerver alternatív felhasználásának lehetőségei OK	
+- Android kliens (Java): OK
+	- miért Java Kotlin helyett OK
+	- java előnyei OK 
+	- java hátrányai OK
+	- felmerül problémák és megoldásaik OK
+	- java kliens program részegységei: OK
+		- MainFrame OK
+		- Reader (class) OK
+		- Writer (class) Ok
 - PC kliens (java): OK
 	- prototipus elkészült funkciói OK
 	- hatása a végleges projektre OK
-	
 - beüzemelési útmutató
 - hibák, amiket a felhasználó könnyen meg tud oldani
 - esetleges további fejleszthető lehetőségek
-
 - QR kód leírása
-
 - Felhasználhatósági területek:
 	- wifimentes területen használható őrrobot
 	- nagykiterjedésű terület
@@ -80,6 +74,5 @@
 		- esetleges betörés esetén fénykép készítése a betörőről
 		- OpenCV segítségével objektumok azonosítása (majd én megírom) 
 	- biztonsági szolgálat mellé kisegítő eszköz
-	
 -wifi direct
 -bluetotth elvetése
