@@ -36,3 +36,5 @@ villanymotor: https://hu.wikipedia.org/wiki/Egyen%C3%A1ram%C3%BA_g%C3%A9p
 
 java swing: https://en.wikipedia.org/wiki/Swing_(Java)
 Android részaránya: https://gs.statcounter.com/os-market-share/all/worldwide/2021
+Android OP rendszer: https://hu.wikipedia.org/wiki/Android_(oper%C3%A1ci%C3%B3s_rendszer)
+
