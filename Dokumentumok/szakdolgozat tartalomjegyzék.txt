@@ -61,10 +61,14 @@
 - PC kliens (java): OK
 	- prototipus elkészült funkciói OK
 	- hatása a végleges projektre OK
-- beüzemelési útmutató
-- hibák, amiket a felhasználó könnyen meg tud oldani
-- esetleges további fejleszthető lehetőségek
-- QR kód leírása
+- beüzemelési útmutató OK
+- hibák, amiket a felhasználó könnyen meg tud oldani OK
+	-lemerült táp OK
+	-nincs wifi OK
+	-kerekek egyenesbe állítása OK
+	-kamera beállítása OK
+- esetleges további fejleszthető lehetőségek ??
+- QR kód leírása 
 - Felhasználhatósági területek:
 	- wifimentes területen használható őrrobot
 	- nagykiterjedésű terület

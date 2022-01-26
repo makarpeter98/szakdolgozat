@@ -329,12 +329,12 @@ progresszív: először durva formákat, majd a finomabb részleteket dolgozza f
 JPEG-ben nem a képpontok tárolódnak le, hanem a képet transzformálják a frekvencia-tartományban DCT-vel (diszkrét koszinusz transzformáció).
 Továbbfejlesztett változata a JPEG2000, mely a DCT helyett Wavelet transzformációt használ. Ez a 8x8 pixeles elemi blokkok határán jelent nagy különbséget.
 	A szabvány ugyan a tömörítést leírja de nem határozza meg a tárolási módokat. A képeket többnyire a JFIF ((JPEG File Interchange Format) ) formátumban tárolják. A kép feldolgozása többlépcsős:
-    1. Színtérszámítás RGB színtérből YCbCr színtérbe CCIR601 szerint
-    2. Cb és Cr színkomponensek szűrése és letapogatása.
-    3. 8x8-as blokkokra történő felosztás majd a blokkok diszkrét koszinusz transzformációja 
-    4. Kvantálás
-    5. Átrendezés
-    6. Entrópiakódolás
+Színtérszámítás RGB színtérből YCbCr színtérbe CCIR601 szerint
+Cb és Cr színkomponensek szűrése és letapogatása.
+8x8-as blokkokra történő felosztás majd a blokkok diszkrét koszinusz transzformációja 
+Kvantálás
+Átrendezés
+Entrópiakódolás
 
 Az 1,2,3,4-es lépéseknél képződik a veszteség. Ezt az emberi szem egészen a 1,5 - 2 bit/pixel adatmennyiségig nem látja, 0,3bit/pixel alatt a kép használhatatlan., mivel a tömörítés során olyan mintázatok kerülnek a képre amelyek korábban nem voltak ott, blokkok képződnek színek jelennek meg és tűnnek el, szürkül a kép a JPEG2000 ezeket a hibákat orvosolta. 
 Ha a forrásfájl 24-bit-RGB fájl, akkor 12-15-szörös tömörítésnél még szabad szemmel nem látható a veszteség, 35-ig még jó minőségűnek nevezhető a kép. Ezek a számok függenek a kép tartalmától is. Ha sok az apró részlet a képen ezek elveszhetnek a tömörítési eljárás során. 
@@ -358,22 +358,22 @@ PC Java Szerver: Feladata a Raspberry-n és az Androidon futó kliensek összek�
 	Egy esetleges továbbfejlesztett változatban a szerveren áthaladó képeket ki lehetne elemezni. Mivel a Raspberry teljesítménye nem elegendő azadatok helyben történő feldolgozásához ezért az, csak továbbítaná a kamera képét a szervernek. A szerver pedig tetszőleges képfeldolgozási eljárásokat hajthatna végre a kapott adatokon például objektumok felismerése. Az objektumfelismerés alkalmas lehet egy bolt árúkészletének nyílvántartására. Az OpenCV támogatja az arcfelismerést ha kellő számú minta áll rendelkezésre. Egy ilyen felhasználás során az eszköz lefényképezi az előtte álló személyt a szerver pedig azonosítja az adatbázis alapján. Ha nincs egyezés akkor értesíti az illetékeseket.
 	Mivel a szerver megkapja a robot által beolvasott információkat ezért nyomon is tudja követni az aktuális állapotát. Egy sematikus ábrán lehet ábrázolni az eszköz aktuális pozícióját, hasonlóan a buszokon található monitorhoz.
 	
-	A Java nyelvben választása öt fő okra vezethető vissza:
-- A párhuzamos szálakkal történő programozást egyszerűen lehet benne megvalósítani
-- A platformfüggetlensége miatt az összes szükséges operációs rendszert támogatja
-- A nyelv objektumorientált. A részegységek egységbezárása miatt és a logikai elemek elkülönítése miatt volt fontos. 
-- A Socketekn keresztül történő kommunikáció megvalósításásra könnyen használható eszközök állnak a rendelkezésre.
-- Egyszerűen készíthető grafikus vezérlőfelület (GUI) a korábban csak konzolos felületen karakteres megjelenítő helyett.
+A Java nyelvben választása öt fő okra vezethető vissza:
+A párhuzamos szálakkal történő programozást egyszerűen lehet benne megvalósítani
+A platformfüggetlensége miatt az összes szükséges operációs rendszert támogatja
+A nyelv objektumorientált. A részegységek egységbezárása miatt és a logikai elemek elkülönítése miatt volt fontos. 
+A Socketekn keresztül történő kommunikáció megvalósításásra könnyen használható eszközök állnak a rendelkezésre.
+Egyszerűen készíthető grafikus vezérlőfelület (GUI) a korábban csak konzolos felületen karakteres megjelenítő helyett.
 
 	A párhuzamos szálkezeléssel segítségével lehet megvalósítani a kliensek elválasztását egymástól. Mivel két klienst kell egyszerre kezelni, ezért ha a megvalósítás jó, akkor nem igényel sok erőforrást. Ilyenkor a kliensekhez kötődő folyamatok a szerveren egymástól függetlenül futnak, egy esetleges hiba nem állítja le az egész programot. 
 	A szálak egymással egy mindenki számára elérhető és módosítható objektumon keresztül kommunikálnak. Ha egy szál megszerzi a neki szükséges információt akkor törli azt, annak érdekében, hogy legközelebb már ne olvassa ki. Ha megvan az üzenet akkor továbbítja a kliensnek, vagy ha a szervernek szóló tartalom van benne akkor végrehajtja azt.
 	  Az első változatban a megvalósítás nem volt tökéletes, így a szervernek igen magas lett a hardverigénye. Ennek oka a szálak kezelésében volt keresendő, valamint a szálak futása során elvégzett tevékenységekben. A futtatás nagy erőforrásigénye miatt a szerver több váratlan hibát is produkált:
-    1. Lefagyott
-    2. Eldobta a kapcsolatot a kliensekkel
-    3. Nem küldte el az üzenetet
-    4. Többször is elküldte az üzenetet
-    5. Váratlanul kilépett
-    6. A grafikus felület fagyott le, de a működés továbbra is hibamentes volt
+Lefagyott
+Eldobta a kapcsolatot a kliensekkel
+Nem küldte el az üzenetet
+Többször is elküldte az üzenetet
+Váratlanul kilépett
+A grafikus felület fagyott le, de a működés továbbra is hibamentes volt
 
 Ezeket a hibákat a szálkezelés rendberakása után nem produkálta. A megoldás a szálak futásának időzétése és a szálak futásának szüneteltetése volt. Ha egy kliens üzenetet küld akkor azt a program továbbítja vagy végrehajtja majd a száll futása szünetel egy darabig. Ha egy kliens lecsatlakozik, vagy nem válaszol az ellenőrző üzenetre akkor a szál leáll. Korábban előfordult, hogy a lecsatlakozott kliens után a hozzá rendelt folyamat még tovább futott és pazarolta az erőforrásokat. Egy klienshez egy fogadó és egy üzenetküldő szál társul. Így minden felvett új kliens kettővel növeli a futó folyamatok számát. 
 	A kliensek csatlakozásának ellenőrzését a szerver egy watchdog timer szerű működéssel oldja meg. Egységes időközönként üzenetet küld a klienseknek akik válaszolnak az üzenetre. Ha nincs válasz akkor megismétli a következő periódusban. Ha ekkor sem kap választ akkor az adott szálat leállítja. Ilyenkor a kliens újra csatlakozhat. 
@@ -409,7 +409,7 @@ listákat
 	
 	A könyvtár nagyrészt függ az MCV modell ( Modell View Controll - Modell Nézet Vezérlő) mintáitól. Ennek lényege, hogy a megtekintett adatok, a beviteli elemek és az ezek utasításait kezelő modelltől el vannak különítve. Az elemekhez társulnak modellek amelyekhez a felhasználó írhatja meg a megvalósítást. A tipikus használat csak a fák és listák esetén igényelhet egyedi modellek létrehozását. A keretrendszer biztosítja az alapértelmezett implementációkat, melyek társítva vannak a Swing könyvtárban található gyermekosztályokkal. A listák, fák, táblák igényelhetnek egyedi modelleket ha az adatstruktúrák alkalmazás-specifikusak.
 	A Swing a relatív elemelrendezést preferálja. Ez, a felületet alkotó vizuális elemek közötti helyzeti viszonyokat írja le. A másik elrendezési mód az abszolút elemelrendezési módszer. Itt az elemek helye és mérete pontosan rögzítve van. Utóbbi eljárás kevésbé kezeli rugalmasan az ablak méretének változásait. Nem megfelelő beállítások esetén a grafikus felület széteshet. 
-	
+	(# java swing forrás felírva#)
 	(# kép a grafikus felületről#)
 	
 beérkező és kimenő üzenetek megjelenítése
@@ -448,10 +448,10 @@ Szövegdobozok
 Android kliens: A program feladata a robot távirányítású vezérlése amennyiben az szükséges. Ha az eszköz letér a kijelölt útvonalról, vagy egy nem várt esemény miatt kitérőt kell tennie akkor ez megtehető a PC kliens vagy az Androidos kliens segítségével. Készíthető fénykép távirányírással és a szövegbeviteli mező segítségével lehet üzenni is az eszköznek, vagy utasításokat adni neki.
 	Az Androidra történő fejlesztés történhet Kotlin és Java nyelven is. Az utóbbi nyelvre esett a választás mert így a kód egyes részei egységesek lehettek a PC klienssel és a korai Raspberry-n futó klienssel is. Az egységes nyelvhasználatnak és az azonos kódrészleteknek köszönhetően a hibák megkeresése és javítási megoldásának kidolgozása is könnyebb. Egy esetleges probléma kijavítását egy helyen kell kitalálni és a kész megoldást át lehet ültetni más kódokba is.
 	A feladat elvégzésére a Kotlin nyelv is tökéletesen alkalmas, mert lefordítható a Java Virtuális Gépére és alkalmas arra, hogy a Java nyelven készített kóddal működjön együtt. A Java könyvtár egy részére épít például a Collections könyvtár. A Kotlin nyelv egyik előnye a Java-bal szemben, hogy sokkal tömörebben, kevesebb kód írásával lehet ugyanazt a programot megírni. A kevesebb kód kevesebb hibalehetőséget jelent. A nyelv 16 évvel fiatalabb mint a Java ezért egy kezdő felhasználó jóval kevesebb segédanyagot, információt találhat az interneten. 2021-ben a Java a 2. legnépszerűbb nyelv volt 17,82%-os részaránnyal, míg a Kotlin a 13. 1,44%-al a PYPL Index szerint átlagosan világszerte. A jövőben a Kotlin valószínűleg nagyobb népszerűségre fog szert tenni a hosszútávú tendenciák alapján. Az Android studio egyformán támogatja a Java és a Kotlin nyelven való fejlesztést. A két nyelv támogatása 2017-ben jelent meg a szoftverben először. A Google célja, hogy a fejlesztők elsősorban a Kotlin nyelvet használják az Android appfejlesztéshez, ugyanakkor a Java nyelv támogatása is hosszútávon megmarad. A Kotlin számtalan előnye mellett a választás a Java-ra esett a korábban szerzett tapasztalatok a platformfüggetlensége és az egységesen elvégezhezhető hibajavítás miatt.
-	
+(##)	
 	A fejlesztés az Android Studio-val történt. A szoftver által alapértelmezetten biztosított grafikus felülettel készült fel a felhasználói felület. A felület leírása XML kóddal történik amellyel könnyen lehet gombokat, szövegdobozokat, szövegmezőket létrehozni, akár csak a Swing segítségével. Az XML kóddal széleskörűen lehet a grafikus felület elemeit személyre szabni. A felület megalkotásához az Android Studio-ba integrált Layout Editor-t kell használni. 
 	Az XML ( Extensible Markup Language - kiterjeszthető jelölőnyelv ) egy általános célú leíró nyelv. Adattípusok leírására képes. Elsődleges célja a strukturált szöveg leírása az interneten keresztül. Előnye, hogy az emberi szem számára is könnyen értelmezhető a leírás jellege. Képes a legtöbb adatstruktúra leírására. Platformfüggetlen így könnyen szállítható.
-	
+(## XML forrás wikipédia)	
 	A kliens egy Android rendszerű telefonon kapott helyet. Az Android széles körben elterjedt jelenleg a legnépszerűbb operációs rendszer megelőzve a Windows-t és az IOS-t 39%-os részaránnyal 2021-ben. A nagy részesedésnek köszönhetően a megírt kliens rengeteg eszközön képes futni. A tesztelés egy gyengébb és egy közepes teljesítményű telefonnal történt. Mind a két eszközön megfelelően futott a program. Így ha a rendszert egy nagyobb telephelyen kellene bevetni nem igényelne drága infrastruktúrát. Egy közép-alsó kategóriás eszközön már használható minőségben fut.
 
 Minimális rendszerkövetelmények: 
@@ -476,4 +476,72 @@ HSDPA (High-Speed Downlink Packet Access) - Nagy sebességű Csomagletöltési H
 	Ha nem áll rendelkezésre wifi router akkor az eszköz távirányítható a telefon hordozható wifi hotspot szolgáltatásával. Ilyenkor a szerver programot futtató PC-t és a robotot csatlakoztatni kell a telefonhoz wifin keresztül. A megfelelő beállítások elvégzése után használható a rendszer. 
 	Android kliens is több szálon üzemel. A mai okostelefonoknak már bőven van olyan teljesítménye, hogy egy ilyen programot futtatni tudjon. Indítás után meg kell adni a szerver IP címét a felhasználónevet és a cél kliens felhasználóját. Ezt követően történik a csatlakozás. A program Socketen keresztül csatlakozik a szerverhez. Elküldi a felhasználónevét amivel a továbbiakban azonosítható lesz. Ha a csatlakozás sikeres, a telefonnal lehet irányítani a robotot. Beállítástól függően a telefon felhasználója akár tájékoztatást is kaphat a robot aktuális állapotáról. A telefonról lehet a PC-s klienshez hasonlóan üzenetet küldeni az eszköznek amiben egyéni utasítások szerepelhetnek. 
 	Egy esetleges továbbfejlesztett változatban  lehetne jelezni, hogy hol jár a robot vagy a robotba való GPS beépítésével a koordinátákat is lehetne továbbítani a telefonra. Ha a szerver rendelkezik a képfeldolgozáshoz szükséges képességekkel akkor a telefonra érkezhet a felhasználónak tájékoztatás az azonosított személyekről.
-	A felhasználói élmény nagyban függ a telefon teljesítményétől a router teljesítményétől, a robot távolságától a wifi jelforrásához viszonyítva. Célszerű egy megfelelő lefedettésgű területen használni a rendszert. 
+	A felhasználói élmény nagyban függ a telefon teljesítményétől a router teljesítményétől, a robot távolságától a wifi jelforrásához viszonyítva. Célszerű egy megfelelő lefedettésgű területen használni a rendszert.
+(#Android forrás feljegyezve#)
+
+A beüzemelés lépései: 
+Előkészítés: A felhasználónak meg kell győződnie, hogy a felhasználási területen megfelelő Wifi lefedettség van valamint a robot vezérlését végző táblák megfelelő helyre vannak e kihelyezve. A sima csúszós felületektől mentes talaj előnyt jelent például: beton, járólap. Le kell ellenőrizni, hogy az akkumulátor vagy az ennek helyettesítésére szolgáló 4db ceruzaelem rendelkezik-e a megfelelő töltöttségi szinttel.
+A kamerának: 
+A megfelelő irányba kell néznie
+Nem lehet szennyeződés a lencsén
+A kamera kábele nem lehet megtörve, megszakadva
+A kábelt csatlakoztatni kell a Robespierre-hez és a kamerához is.
+
+Ha a kamera nem megfelelő irányba néz, manuálisan be kell állítani. A kamera felfogatása olyan, hogy engedi a forgatást. Erre azért van szükség mert a kamera a járműtest fölött helyezkedik el és szállírás közben megsérülhet. Szállítás során a kamera visszahajtható a hátsó részbe. 
+
+(#lehajtott kamerás kép#)
+
+Raspberry:
+A kék kapcsolónak kikapcsolt állapotban kell lennie. Ez azért szükséges mert az ellenőrzés során a Raspberry nem kaphat áramot.
+A szalagkábelnek megfelelően kell csatlakoznia a GPIO lábakhoz. A fehér pöttyel jelölt lábnak a fehér pöttyel jelölt lábhoz kell csatlakoznia. 
+A hűtést biztosító ventilátornak csatlakoznia a kell a GPIO lábakhoz. A robot háza meglehetősen zárt, ezért szükség van erre a ventilátorra, hogy ne melegedjen túl a processzor. 
+A kamerának a megfelelő portra kell csatlakoznia.
+A kábelek nem lehetnek megtörve vagy megszakadva
+A kábelek nem feszülhetnek
+Minden kábelnek a csatlakozásába könnyen kell illeszkednie, nem szorulhat, feszülhet. Ez az adott port károsodásával járhat.
+
+(#kép a fehérpöttyről a GPIO lábakon#)
+
+Autó:
+A jármű alján található kapcsolónak kikapcsolt állapotban kell lennie az ellenőrzés során. 
+Az eszköz teleptárolójába el kell helyezni az akkumulátorokat vagy az elemeket.
+Az L298-as IC-n a jumpereknek a megfelelő helyen kell lenniük.
+A Raspberry-t a ház belsejében kell elhelyezni, az erre kialakított üregben.
+A forgatható kerekeknek előre kell nézniük.
+Ha a Raspberry a helyén van és a kamera, a táp és a szalagkábel is csatlakoztatva van akkor a csavarokkal rögzíteni kell a ház tetejét. A rögzített ház megakadályozza a Raspberry pattogását elcsúszását. Ha a Raspberry elmozdul a kábelek kicsúszhatnak a portjukból.
+A kábeleknek mindig a házon belül kell lenniük. Ha egy kábel kilóg az beleakadhat a tereptárgyakba, vagy feltekeredhet a kerékre. Ez akár súlyosan is károsíthatja a Raspberry-t, a kamerát vagy a vezérlő IC-t.
+
+Ha a kerekek nem előre néznek, azt egy későbbi lépésben korrigáni kell a "wheel_set" paranccsal. A robot a bekapcsoláskori kerékállást tekinti az alapértelmezettnek. 
+
+(#kép az autóról#)
+
+Szervergép:
+A számítógépnek tudnia kell futtatni a szervert.
+Windows: telepíteni kell rá a Java Virtual Machine-t és a Java Standard Edition-t.
+Linux: csak a Java Standard Edition-t kell telepíteni.
+Rendelkeznie kell hálózati kapcsolattal. Azonos hálózati elosztóra kell kapcsolódnia mint amire a Raspberry és a telefon fog. Mivel a szerver nem fog mozogni, ezért a kapcsolat lehet vezeték nélküli is.
+A szervergép elvárt teljesítménye a csatlakoztatott kliensek számától függ. Két kliens esetén 6 futó szállal kell számolni.
+
+Tesztelési céllal a szerveren futhat a PC kliens is. Ennek használata kevésbé körülményes mint a telefonos változaté. Másik előnye, hogy nem függ a hálózattól a csatlakozása.
+
+Telefon:
+Minimum Android 7.0 Nougat Androiddal kell rendelkeznie.
+Képesnek kell lennie kapcsolódni a közös wifi hálózatra.
+Fel kell telepítni rá a kliens programot. Ez a legkönnyebben az Android Studio segítségével tehető meg. 
+Ha a robotot távirányítani kell akkor a wifi lefedettségén belül kell maradni. 
+
+Ezek mellett az eszközök mellett szükség van még egy olyan routerre amely képes internettel ellátni az összes eszközt. (vezetéknélküli vagy vezetékes kapcsolattal)
+
+Ha minden előkészítő lépés kész van kezdődhet a rendszer beüzemelése. Első lépés a szerver elindítása. A számítógépnek csatlakoznia kell a hálózatra, majd el kell indítani a szervet. Szükség lesz a szerver IP címére, ezt Windows operációs rendszer esetén a legkönnyebben a parancssorba begépelt "ipconfig" utasítással kaphatjuk meg. Linux esetén az IP-t a parancssorba beírt "hosname -I" utasítással kaphatjuk meg. Előbbinél az "IPv4 Address" kezdetű sornál utóbbinál az első számsornál találjuk a szükséges címet. Az IP cím a kliensek számára fontos. Így tudják azonosítani a szervet. A port is egy fontos paraméter de az fix, a 10000-res számra van beállítva. Ezt a kliensek és a szerver is alapértelmezetten tudja. 
+	A következő lépés az autó üzembe helyezése. Első lépésként a Raspberry-t kell áram alá helyezni. A rendszer automatikusan csatlakozik a wifire, ha ismeri a kapcsolódáshoz szükséges adatokat. Ha ez nem történik meg akkor van lehetőség egy billentyűzet és egy monitor csatlakoztatására és el lehet végezni a folyamatot manuálisan (tesztek során erre nem volt szükség mindig tudott csatlakozni). A Raspberry-nek két féle módon lehet utasításokat adni. Lehet monitort, egeret és billentyűzetet használni, mert minden ehhez szükséges porttal rendelkezik, vagy lehet rá csatlakozni Putty segítségével. Ilyenkor tudni kell a Raspberry IP-címét, de a teszthez használt router mindig ugyanazokat a címeket osztotta ki az eszközöknek így ez adott volt. Az IP segítségével csatlakozni kell a Raspberry OS-hez meg kell adni a felhasználónevet és a jelszót. Innentől parancssorral lehet vezérelni az eszközt, így nem szükséges a folytonos fizikai kapcsolat létesítése a beállítások módosításához.
+	Az autó hasán van egy három állású kapcsoló. A kapcsolót a jobbszélső állásba kell kapcsolni, ezzel áram alá kerül a vezérlő IC (egy piros visszajelző led világít rajta). Innentől a program képes lesz vezérelni a GPIO lábakon keresztül az eszközt. A kábeleknek a házon belül kell lenniük. Ezt le kell ellenőrizni még egyszer. El kell a parancssor segítségével indítani a programot. Miután a felhasználó válaszol a parancssorban a kliens által feltett konfigurációs kérdésekre az eszköz csatlakozik a szerverre, meg kell adni a felhasználónevet, a cél kliens felhasználónevét és a szerver IP-címét.  A sikeres csatlakozást a szerver és a kliens is jelzi. Ha az autó olyan területen halad ahol nincs wifi kapcsolat akkor csak a QR kódokat tudja követni. A QR kód követése viszont lehetővé teszi, hogy nagyobb területet járjon körbe mint amit a lefedettsége lehetővé tenne. 
+	Kapcsolódás után a kliens elvégez egy gyors önellenőrzést. Előre-hátra mozog egy keveset majd elforgatja a kerekeket jobbra-balra. Leellenőrzi, hogy van e kamera csatlakoztatva. A felhasználó itt tudja a kerekeket egyenesbe állítani ha szükséges a "wheel_set" paranccsal. Ez elvégezhető a Putty-n keresztül is.
+	Ha szükséges lehet csatlakozni a PC klienssel is. Ebben az esetben is a szerver IP-t a felhasználónevet és a másik kliens felhasználóját kell megadni. Ha a PC kliens a szerverrel egy gépen fut akkor a 192.168.56.1-es IP-címmel is lehet csatlakozni.
+	Az utolsó lépés a telefon szerverre csatlakoztatása. El kell indítani az appot, majd meg kell adni az IP címet. A többi paramétert a program alapértelmezetten ismeri. A sikeres és a sikertelen csatlakozásról is tájékoztatja a felhasznált. Az alapértelmezett felhasználó név az "Android" az alapértelmezett cél pedig a "Raspberry". Innentől a telefonnal lehet az autó mozgását befolyásolni, ha letérne az útról akkor lehet korrigálni. Az autó a QR kódok által kijelölt útvonalat követi alapértelmezetten, de ha szükséges akkor lehet vele kitérőket is tenni a telefon vezérlésével.
+	
+Felhasználó által elhárítható hibák: Egy esetleges probléma megoldása sokszor nem igényel semmilyen informatikai alapismeretet vagy műszaki tudást:
+Ha a kamera nem megfelelő irányba néz akkor a felhasználónak csatlakoztatnia kell egy monitort és egy billentyűzetet a Raspberry-hez. Elindítja a programot, de úgy, hogy a kamera kép jelenjen meg. Ezután a kamerát kell úgy mozgatni, hogy a kamera előtt található QR kód 1 méteres távolságban pont a kép közepén helyezkedjen el.
+Ha a Raspberry nem csatlakozik a wifi-re akkor egy monitor és billentyűzet segítségével manuálisan kell megadni a csatlakozáshoz szükséges adatokat.
+Ha a Raspberry nem kapcsol be akkor a tápellátást biztosító kábelt kell ellenőrizni vagy kicserélni.
+Ha az autó sem és a Raspberry sem kapcsol be akkor az akkumulátor vagy az elem merült le, ilyenkor telepcserét kell eszközölni.
+A kerekek beállítása a "wheel_set" parancs megadása utána "j" vagy "b" billentyűk megnyomásával történik.
